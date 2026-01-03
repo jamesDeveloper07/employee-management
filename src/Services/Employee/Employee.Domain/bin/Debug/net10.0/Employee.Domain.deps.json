@@ -1,0 +1,60 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "Employee.Domain/1.0.0": {
+        "dependencies": {
+          "Common.Domain": "1.0.0",
+          "Microsoft.Extensions.Localization.Abstractions": "10.0.1"
+        },
+        "runtime": {
+          "Employee.Domain.dll": {}
+        },
+        "resources": {
+          "pt-BR/Employee.Domain.resources.dll": {
+            "locale": "pt-BR"
+          }
+        }
+      },
+      "Microsoft.Extensions.Localization.Abstractions/10.0.1": {
+        "runtime": {
+          "lib/net10.0/Microsoft.Extensions.Localization.Abstractions.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.125.57005"
+          }
+        }
+      },
+      "Common.Domain/1.0.0": {
+        "runtime": {
+          "Common.Domain.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Employee.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.Extensions.Localization.Abstractions/10.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-TQSQWF+iZdtGNgPiu7gKUqrTEeRD/mhk7KeYiuEwmTUPbawsYfPSNzSvOOeueJ0nU1697X8HZ2vCp2ByHNHkZg==",
+      "path": "microsoft.extensions.localization.abstractions/10.0.1",
+      "hashPath": "microsoft.extensions.localization.abstractions.10.0.1.nupkg.sha512"
+    },
+    "Common.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

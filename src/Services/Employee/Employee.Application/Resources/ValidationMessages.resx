@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <!-- Common Validation Messages -->
+  <data name="Required" xml:space="preserve">
+    <value>{0} is required</value>
+  </data>
+  <data name="MaxLength" xml:space="preserve">
+    <value>{0} must not exceed {1} characters</value>
+  </data>
+  <data name="ExactLength" xml:space="preserve">
+    <value>{0} must be {1} characters</value>
+  </data>
+  <data name="GreaterThanZero" xml:space="preserve">
+    <value>{0} must be greater than zero</value>
+  </data>
+  <data name="InvalidFormat" xml:space="preserve">
+    <value>Invalid {0} format</value>
+  </data>
+  <data name="MustBeInPast" xml:space="preserve">
+    <value>{0} must be in the past</value>
+  </data>
+  <data name="CannotBeInFuture" xml:space="preserve">
+    <value>{0} cannot be in the future</value>
+  </data>
+
+  <!-- Employee Specific -->
+  <data name="FirstName_Required" xml:space="preserve">
+    <value>First name is required</value>
+  </data>
+  <data name="FirstName_MaxLength" xml:space="preserve">
+    <value>First name must not exceed 100 characters</value>
+  </data>
+  <data name="LastName_Required" xml:space="preserve">
+    <value>Last name is required</value>
+  </data>
+  <data name="LastName_MaxLength" xml:space="preserve">
+    <value>Last name must not exceed 100 characters</value>
+  </data>
+  <data name="CPF_Required" xml:space="preserve">
+    <value>CPF is required</value>
+  </data>
+  <data name="CPF_InvalidFormat" xml:space="preserve">
+    <value>CPF must be in format 00000000000 or 000.000.000-00</value>
+  </data>
+  <data name="Email_Required" xml:space="preserve">
+    <value>Email is required</value>
+  </data>
+  <data name="Email_InvalidFormat" xml:space="preserve">
+    <value>Invalid email format</value>
+  </data>
+  <data name="PhoneNumber_Required" xml:space="preserve">
+    <value>Phone number is required</value>
+  </data>
+  <data name="PhoneNumber_InvalidFormat" xml:space="preserve">
+    <value>Phone number must have 10 or 11 digits</value>
+  </data>
+  <data name="Street_Required" xml:space="preserve">
+    <value>Street is required</value>
+  </data>
+  <data name="Street_MaxLength" xml:space="preserve">
+    <value>Street must not exceed 200 characters</value>
+  </data>
+  <data name="Number_Required" xml:space="preserve">
+    <value>Number is required</value>
+  </data>
+  <data name="Number_MaxLength" xml:space="preserve">
+    <value>Number must not exceed 20 characters</value>
+  </data>
+  <data name="Neighborhood_Required" xml:space="preserve">
+    <value>Neighborhood is required</value>
+  </data>
+  <data name="Neighborhood_MaxLength" xml:space="preserve">
+    <value>Neighborhood must not exceed 100 characters</value>
+  </data>
+  <data name="City_Required" xml:space="preserve">
+    <value>City is required</value>
+  </data>
+  <data name="City_MaxLength" xml:space="preserve">
+    <value>City must not exceed 100 characters</value>
+  </data>
+  <data name="State_Required" xml:space="preserve">
+    <value>State is required</value>
+  </data>
+  <data name="State_ExactLength" xml:space="preserve">
+    <value>State must be 2 characters</value>
+  </data>
+  <data name="ZipCode_Required" xml:space="preserve">
+    <value>ZipCode is required</value>
+  </data>
+  <data name="ZipCode_InvalidFormat" xml:space="preserve">
+    <value>ZipCode must be in format 00000000 or 00000-000</value>
+  </data>
+  <data name="BirthDate_Required" xml:space="preserve">
+    <value>Birth date is required</value>
+  </data>
+  <data name="BirthDate_MustBeInPast" xml:space="preserve">
+    <value>Birth date must be in the past</value>
+  </data>
+  <data name="HireDate_Required" xml:space="preserve">
+    <value>Hire date is required</value>
+  </data>
+  <data name="HireDate_CannotBeInFuture" xml:space="preserve">
+    <value>Hire date cannot be in the future</value>
+  </data>
+  <data name="Salary_GreaterThanZero" xml:space="preserve">
+    <value>Salary must be greater than zero</value>
+  </data>
+  <data name="Position_Required" xml:space="preserve">
+    <value>Position is required</value>
+  </data>
+  <data name="Position_MaxLength" xml:space="preserve">
+    <value>Position must not exceed 100 characters</value>
+  </data>
+  <data name="DepartmentId_Required" xml:space="preserve">
+    <value>Department is required</value>
+  </data>
+  <data name="EmployeeId_Required" xml:space="preserve">
+    <value>Employee ID is required</value>
+  </data>
+</root>

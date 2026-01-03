@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <!-- Exceções do Domínio Employee -->
+  <data name="FirstNameCannotBeEmpty" xml:space="preserve">
+    <value>Primeiro nome não pode estar vazio</value>
+  </data>
+  <data name="LastNameCannotBeEmpty" xml:space="preserve">
+    <value>Sobrenome não pode estar vazio</value>
+  </data>
+  <data name="SalaryMustBeGreaterThanZero" xml:space="preserve">
+    <value>Salário deve ser maior que zero</value>
+  </data>
+  <data name="PositionCannotBeEmpty" xml:space="preserve">
+    <value>Cargo não pode estar vazio</value>
+  </data>
+  <data name="BirthDateMustBeInPast" xml:space="preserve">
+    <value>Data de nascimento deve estar no passado</value>
+  </data>
+  <data name="HireDateCannotBeInFuture" xml:space="preserve">
+    <value>Data de contratação não pode estar no futuro</value>
+  </data>
+
+  <!-- Exceções do Domínio Department -->
+  <data name="DepartmentNameCannotBeEmpty" xml:space="preserve">
+    <value>Nome do departamento não pode estar vazio</value>
+  </data>
+  <data name="DepartmentDescriptionCannotBeEmpty" xml:space="preserve">
+    <value>Descrição do departamento não pode estar vazia</value>
+  </data>
+
+  <!-- Exceções dos Value Objects -->
+  <data name="CPFCannotBeEmpty" xml:space="preserve">
+    <value>CPF não pode estar vazio</value>
+  </data>
+  <data name="CPFMustHave11Digits" xml:space="preserve">
+    <value>CPF deve ter 11 dígitos</value>
+  </data>
+  <data name="InvalidCPF" xml:space="preserve">
+    <value>CPF inválido</value>
+  </data>
+  <data name="EmailCannotBeEmpty" xml:space="preserve">
+    <value>Email não pode estar vazio</value>
+  </data>
+  <data name="InvalidEmailFormat" xml:space="preserve">
+    <value>Formato de email inválido</value>
+  </data>
+  <data name="PhoneNumberCannotBeEmpty" xml:space="preserve">
+    <value>Telefone não pode estar vazio</value>
+  </data>
+  <data name="PhoneNumberMustHave10Or11Digits" xml:space="preserve">
+    <value>Telefone deve ter 10 ou 11 dígitos</value>
+  </data>
+  <data name="StreetCannotBeEmpty" xml:space="preserve">
+    <value>Rua não pode estar vazia</value>
+  </data>
+  <data name="NumberCannotBeEmpty" xml:space="preserve">
+    <value>Número não pode estar vazio</value>
+  </data>
+  <data name="NeighborhoodCannotBeEmpty" xml:space="preserve">
+    <value>Bairro não pode estar vazio</value>
+  </data>
+  <data name="CityCannotBeEmpty" xml:space="preserve">
+    <value>Cidade não pode estar vazia</value>
+  </data>
+  <data name="StateCannotBeEmpty" xml:space="preserve">
+    <value>Estado não pode estar vazio</value>
+  </data>
+  <data name="ZipCodeCannotBeEmpty" xml:space="preserve">
+    <value>CEP não pode estar vazio</value>
+  </data>
+  <data name="CountryCannotBeEmpty" xml:space="preserve">
+    <value>País não pode estar vazio</value>
+  </data>
+
+  <!-- Exceções dos Handlers -->
+  <data name="EmployeeWithCPFAlreadyExists" xml:space="preserve">
+    <value>Funcionário com CPF {0} já existe</value>
+  </data>
+  <data name="EmployeeNotFound" xml:space="preserve">
+    <value>Funcionário com ID {0} não encontrado</value>
+  </data>
+</root>

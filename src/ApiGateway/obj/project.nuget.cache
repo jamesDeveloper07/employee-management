@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "BC6ujEJa/Jc=",
+  "success": true,
+  "projectFilePath": "/Users/james/SNR Test/Project/employee-management/src/ApiGateway/ApiGateway.csproj",
+  "expectedPackageFiles": [
+    "/Users/james/.nuget/packages/microsoft.aspnetcore.openapi/10.0.0/microsoft.aspnetcore.openapi.10.0.0.nupkg.sha512",
+    "/Users/james/.nuget/packages/microsoft.openapi/2.0.0/microsoft.openapi.2.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

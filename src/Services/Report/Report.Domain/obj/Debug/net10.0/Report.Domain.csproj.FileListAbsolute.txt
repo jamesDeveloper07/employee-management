@@ -1,0 +1,12 @@
+/Users/james/SNR Test/Project/employee-management/src/Services/Report/Report.Domain/bin/Debug/net10.0/Report.Domain.deps.json
+/Users/james/SNR Test/Project/employee-management/src/Services/Report/Report.Domain/bin/Debug/net10.0/Report.Domain.dll
+/Users/james/SNR Test/Project/employee-management/src/Services/Report/Report.Domain/bin/Debug/net10.0/Report.Domain.pdb
+/Users/james/SNR Test/Project/employee-management/src/Services/Report/Report.Domain/obj/Debug/net10.0/Report.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/james/SNR Test/Project/employee-management/src/Services/Report/Report.Domain/obj/Debug/net10.0/Report.Domain.AssemblyInfoInputs.cache
+/Users/james/SNR Test/Project/employee-management/src/Services/Report/Report.Domain/obj/Debug/net10.0/Report.Domain.AssemblyInfo.cs
+/Users/james/SNR Test/Project/employee-management/src/Services/Report/Report.Domain/obj/Debug/net10.0/Report.Domain.csproj.CoreCompileInputs.cache
+/Users/james/SNR Test/Project/employee-management/src/Services/Report/Report.Domain/obj/Debug/net10.0/Report.Domain.sourcelink.json
+/Users/james/SNR Test/Project/employee-management/src/Services/Report/Report.Domain/obj/Debug/net10.0/Report.Domain.dll
+/Users/james/SNR Test/Project/employee-management/src/Services/Report/Report.Domain/obj/Debug/net10.0/refint/Report.Domain.dll
+/Users/james/SNR Test/Project/employee-management/src/Services/Report/Report.Domain/obj/Debug/net10.0/Report.Domain.pdb
+/Users/james/SNR Test/Project/employee-management/src/Services/Report/Report.Domain/obj/Debug/net10.0/ref/Report.Domain.dll

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "DuQyebtQZJg=",
+  "success": true,
+  "projectFilePath": "/Users/james/SNR Test/Project/employee-management/src/Services/Employee/Employee.Domain/Employee.Domain.csproj",
+  "expectedPackageFiles": [
+    "/Users/james/.nuget/packages/microsoft.extensions.localization.abstractions/10.0.1/microsoft.extensions.localization.abstractions.10.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

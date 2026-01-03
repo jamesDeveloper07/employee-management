@@ -1,0 +1,12 @@
+/Users/james/SNR Test/Project/employee-management/src/BuildingBlocks/EventBus/bin/Debug/net10.0/EventBus.deps.json
+/Users/james/SNR Test/Project/employee-management/src/BuildingBlocks/EventBus/bin/Debug/net10.0/EventBus.dll
+/Users/james/SNR Test/Project/employee-management/src/BuildingBlocks/EventBus/bin/Debug/net10.0/EventBus.pdb
+/Users/james/SNR Test/Project/employee-management/src/BuildingBlocks/EventBus/obj/Debug/net10.0/EventBus.GeneratedMSBuildEditorConfig.editorconfig
+/Users/james/SNR Test/Project/employee-management/src/BuildingBlocks/EventBus/obj/Debug/net10.0/EventBus.AssemblyInfoInputs.cache
+/Users/james/SNR Test/Project/employee-management/src/BuildingBlocks/EventBus/obj/Debug/net10.0/EventBus.AssemblyInfo.cs
+/Users/james/SNR Test/Project/employee-management/src/BuildingBlocks/EventBus/obj/Debug/net10.0/EventBus.csproj.CoreCompileInputs.cache
+/Users/james/SNR Test/Project/employee-management/src/BuildingBlocks/EventBus/obj/Debug/net10.0/EventBus.sourcelink.json
+/Users/james/SNR Test/Project/employee-management/src/BuildingBlocks/EventBus/obj/Debug/net10.0/EventBus.dll
+/Users/james/SNR Test/Project/employee-management/src/BuildingBlocks/EventBus/obj/Debug/net10.0/refint/EventBus.dll
+/Users/james/SNR Test/Project/employee-management/src/BuildingBlocks/EventBus/obj/Debug/net10.0/EventBus.pdb
+/Users/james/SNR Test/Project/employee-management/src/BuildingBlocks/EventBus/obj/Debug/net10.0/ref/EventBus.dll
