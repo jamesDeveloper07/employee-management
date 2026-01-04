@@ -23,6 +23,18 @@ public class EmployeeAggregate : AggregateRoot
     public DateTime CreatedAt { get; private set; }
     public DateTime? UpdatedAt { get; private set; }
 
+    // EF Core constructor
+    private EmployeeAggregate()
+    {
+        FirstName = string.Empty;
+        LastName = string.Empty;
+        CPF = null!;
+        Email = null!;
+        PhoneNumber = null!;
+        Address = null!;
+        Position = string.Empty;
+    }
+
     private EmployeeAggregate(
         string firstName,
         string lastName,

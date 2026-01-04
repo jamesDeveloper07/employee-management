@@ -10,6 +10,13 @@ public class Department : Entity
     public DateTime CreatedAt { get; private set; }
     public DateTime? UpdatedAt { get; private set; }
 
+    // EF Core constructor
+    private Department()
+    {
+        Name = string.Empty;
+        Description = string.Empty;
+    }
+
     private Department(string name, string description)
     {
         Name = name;
