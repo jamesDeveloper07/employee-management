@@ -6,6 +6,11 @@ public abstract class Entity
 
     public virtual Guid Id { get; protected set; }
 
+    protected Entity()
+    {
+        Id = Guid.NewGuid();
+    }
+
     public override bool Equals(object? obj)
     {
         if (obj == null || obj is not Entity)

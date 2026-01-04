@@ -10,7 +10,7 @@ public class EmployeeConfiguration : IEntityTypeConfiguration<EmployeeAggregate>
     public void Configure(EntityTypeBuilder<EmployeeAggregate> builder)
     {
         // Table name
-        builder.ToTable("Employees");
+        builder.ToTable("employees");
 
         // Primary key
         builder.HasKey(e => e.Id);
@@ -55,33 +55,33 @@ public class EmployeeConfiguration : IEntityTypeConfiguration<EmployeeAggregate>
         builder.OwnsOne(e => e.CPF, cpf =>
         {
             cpf.Property(c => c.Value)
-                .HasColumnName("CPF")
+                .HasColumnName("cpf")
                 .IsRequired()
                 .HasMaxLength(11);
 
             cpf.HasIndex(c => c.Value)
                 .IsUnique()
-                .HasDatabaseName("IX_Employees_CPF");
+                .HasDatabaseName("ix_employees_cpf");
         });
 
         // Value Objects - Email
         builder.OwnsOne(e => e.Email, email =>
         {
             email.Property(em => em.Value)
-                .HasColumnName("Email")
+                .HasColumnName("email")
                 .IsRequired()
                 .HasMaxLength(255);
 
             email.HasIndex(em => em.Value)
                 .IsUnique()
-                .HasDatabaseName("IX_Employees_Email");
+                .HasDatabaseName("ix_employees_email");
         });
 
         // Value Objects - PhoneNumber
         builder.OwnsOne(e => e.PhoneNumber, phone =>
         {
             phone.Property(p => p.Value)
-                .HasColumnName("PhoneNumber")
+                .HasColumnName("phone_number")
                 .IsRequired()
                 .HasMaxLength(11);
         });
@@ -90,37 +90,37 @@ public class EmployeeConfiguration : IEntityTypeConfiguration<EmployeeAggregate>
         builder.OwnsOne(e => e.Address, address =>
         {
             address.Property(a => a.Street)
-                .HasColumnName("AddressStreet")
+                .HasColumnName("address_street")
                 .IsRequired()
                 .HasMaxLength(200);
 
             address.Property(a => a.Number)
-                .HasColumnName("AddressNumber")
+                .HasColumnName("address_number")
                 .IsRequired()
                 .HasMaxLength(20);
 
             address.Property(a => a.Complement)
-                .HasColumnName("AddressComplement")
+                .HasColumnName("address_complement")
                 .IsRequired(false)
                 .HasMaxLength(100);
 
             address.Property(a => a.Neighborhood)
-                .HasColumnName("AddressNeighborhood")
+                .HasColumnName("address_neighborhood")
                 .IsRequired()
                 .HasMaxLength(100);
 
             address.Property(a => a.City)
-                .HasColumnName("AddressCity")
+                .HasColumnName("address_city")
                 .IsRequired()
                 .HasMaxLength(100);
 
             address.Property(a => a.State)
-                .HasColumnName("AddressState")
+                .HasColumnName("address_state")
                 .IsRequired()
                 .HasMaxLength(2);
 
             address.Property(a => a.ZipCode)
-                .HasColumnName("AddressZipCode")
+                .HasColumnName("address_zip_code")
                 .IsRequired()
                 .HasMaxLength(8);
         });

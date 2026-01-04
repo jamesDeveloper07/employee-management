@@ -17,11 +17,12 @@ public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<EmployeeDb
         var builder = new DbContextOptionsBuilder<EmployeeDbContext>();
         var connectionString = configuration.GetConnectionString("DefaultConnection");
 
-        builder.UseSqlServer(connectionString, sqlOptions =>
+        builder.UseNpgsql(connectionString, npgsqlOptions =>
         {
-            sqlOptions.MigrationsAssembly(typeof(EmployeeDbContext).Assembly.FullName);
-            sqlOptions.EnableRetryOnFailure(maxRetryCount: 5, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
-        });
+            npgsqlOptions.MigrationsAssembly(typeof(EmployeeDbContext).Assembly.FullName);
+            npgsqlOptions.EnableRetryOnFailure(maxRetryCount: 5, maxRetryDelay: TimeSpan.FromSeconds(30), errorCodesToAdd: null);
+        })
+        .UseSnakeCaseNamingConvention();
 
         return new EmployeeDbContext(builder.Options);
     }

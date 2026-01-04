@@ -20,11 +20,12 @@ builder.Services.AddControllers();
 // Database Context
 builder.Services.AddDbContext<EmployeeDbContext>(options =>
 {
-    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"), sqlOptions =>
+    options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"), npgsqlOptions =>
     {
-        sqlOptions.MigrationsAssembly(typeof(EmployeeDbContext).Assembly.FullName);
-        sqlOptions.EnableRetryOnFailure(maxRetryCount: 5, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
-    });
+        npgsqlOptions.MigrationsAssembly(typeof(EmployeeDbContext).Assembly.FullName);
+        npgsqlOptions.EnableRetryOnFailure(maxRetryCount: 5, maxRetryDelay: TimeSpan.FromSeconds(30), errorCodesToAdd: null);
+    })
+    .UseSnakeCaseNamingConvention();
 });
 
 // Repositories
@@ -141,5 +142,11 @@ app.MapControllers();
 
 // Health Checks
 app.MapHealthChecks("/health");
+
+// Seed Data
+using (var scope = app.Services.CreateScope())
+{
+    await Employee.Infrastructure.Persistence.DataSeeder.SeedDataAsync(scope.ServiceProvider);
+}
 
 app.Run();

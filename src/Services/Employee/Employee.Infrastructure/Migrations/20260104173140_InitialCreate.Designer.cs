@@ -3,16 +3,16 @@ using System;
 using Employee.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 namespace Employee.Infrastructure.Migrations
 {
     [DbContext(typeof(EmployeeDbContext))]
-    [Migration("20260103201033_InitialCreate")]
+    [Migration("20260104173140_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -21,98 +21,122 @@ namespace Employee.Infrastructure.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "10.0.1")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("Employee.Domain.Aggregates.EmployeeAggregate", b =>
                 {
                     b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
 
                     b.Property<DateTime>("BirthDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("birth_date");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
 
                     b.Property<Guid>("DepartmentId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid")
+                        .HasColumnName("department_id");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("character varying(100)")
+                        .HasColumnName("first_name");
 
                     b.Property<DateTime>("HireDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("hire_date");
 
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
 
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("character varying(100)")
+                        .HasColumnName("last_name");
 
                     b.Property<string>("Position")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("character varying(100)")
+                        .HasColumnName("position");
 
                     b.Property<decimal>("Salary")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,2)")
+                        .HasColumnName("salary");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_employees");
 
-                    b.HasIndex("DepartmentId");
+                    b.HasIndex("DepartmentId")
+                        .HasDatabaseName("ix_employees_department_id");
 
-                    b.HasIndex("HireDate");
+                    b.HasIndex("HireDate")
+                        .HasDatabaseName("ix_employees_hire_date");
 
-                    b.HasIndex("IsActive");
+                    b.HasIndex("IsActive")
+                        .HasDatabaseName("ix_employees_is_active");
 
-                    b.ToTable("Employees", (string)null);
+                    b.ToTable("employees", (string)null);
                 });
 
             modelBuilder.Entity("Employee.Domain.Entities.Department", b =>
                 {
                     b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasColumnType("character varying(500)")
+                        .HasColumnName("description");
 
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("character varying(100)")
+                        .HasColumnName("name");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_departments");
 
-                    b.HasIndex("IsActive");
+                    b.HasIndex("IsActive")
+                        .HasDatabaseName("ix_departments_is_active");
 
                     b.HasIndex("Name")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasDatabaseName("ix_departments_name");
 
-                    b.ToTable("Departments", (string)null);
+                    b.ToTable("departments", (string)null);
                 });
 
             modelBuilder.Entity("Employee.Domain.Aggregates.EmployeeAggregate", b =>
@@ -121,129 +145,139 @@ namespace Employee.Infrastructure.Migrations
                         .WithMany()
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_employees_departments_department_id");
 
                     b.OwnsOne("Employee.Domain.ValueObjects.Address", "Address", b1 =>
                         {
                             b1.Property<Guid>("EmployeeAggregateId")
-                                .HasColumnType("uniqueidentifier");
+                                .HasColumnType("uuid")
+                                .HasColumnName("id");
 
                             b1.Property<string>("City")
                                 .IsRequired()
                                 .HasMaxLength(100)
-                                .HasColumnType("nvarchar(100)")
-                                .HasColumnName("AddressCity");
+                                .HasColumnType("character varying(100)")
+                                .HasColumnName("address_city");
 
                             b1.Property<string>("Complement")
                                 .HasMaxLength(100)
-                                .HasColumnType("nvarchar(100)")
-                                .HasColumnName("AddressComplement");
+                                .HasColumnType("character varying(100)")
+                                .HasColumnName("address_complement");
 
                             b1.Property<string>("Country")
                                 .IsRequired()
-                                .HasColumnType("nvarchar(max)");
+                                .HasColumnType("text")
+                                .HasColumnName("address_country");
 
                             b1.Property<string>("Neighborhood")
                                 .IsRequired()
                                 .HasMaxLength(100)
-                                .HasColumnType("nvarchar(100)")
-                                .HasColumnName("AddressNeighborhood");
+                                .HasColumnType("character varying(100)")
+                                .HasColumnName("address_neighborhood");
 
                             b1.Property<string>("Number")
                                 .IsRequired()
                                 .HasMaxLength(20)
-                                .HasColumnType("nvarchar(20)")
-                                .HasColumnName("AddressNumber");
+                                .HasColumnType("character varying(20)")
+                                .HasColumnName("address_number");
 
                             b1.Property<string>("State")
                                 .IsRequired()
                                 .HasMaxLength(2)
-                                .HasColumnType("nvarchar(2)")
-                                .HasColumnName("AddressState");
+                                .HasColumnType("character varying(2)")
+                                .HasColumnName("address_state");
 
                             b1.Property<string>("Street")
                                 .IsRequired()
                                 .HasMaxLength(200)
-                                .HasColumnType("nvarchar(200)")
-                                .HasColumnName("AddressStreet");
+                                .HasColumnType("character varying(200)")
+                                .HasColumnName("address_street");
 
                             b1.Property<string>("ZipCode")
                                 .IsRequired()
                                 .HasMaxLength(8)
-                                .HasColumnType("nvarchar(8)")
-                                .HasColumnName("AddressZipCode");
+                                .HasColumnType("character varying(8)")
+                                .HasColumnName("address_zip_code");
 
                             b1.HasKey("EmployeeAggregateId");
 
-                            b1.ToTable("Employees");
+                            b1.ToTable("employees");
 
                             b1.WithOwner()
-                                .HasForeignKey("EmployeeAggregateId");
+                                .HasForeignKey("EmployeeAggregateId")
+                                .HasConstraintName("fk_employees_employees_id");
                         });
 
                     b.OwnsOne("Employee.Domain.ValueObjects.CPF", "CPF", b1 =>
                         {
                             b1.Property<Guid>("EmployeeAggregateId")
-                                .HasColumnType("uniqueidentifier");
+                                .HasColumnType("uuid")
+                                .HasColumnName("id");
 
                             b1.Property<string>("Value")
                                 .IsRequired()
                                 .HasMaxLength(11)
-                                .HasColumnType("nvarchar(11)")
-                                .HasColumnName("CPF");
+                                .HasColumnType("character varying(11)")
+                                .HasColumnName("cpf");
 
                             b1.HasKey("EmployeeAggregateId");
 
                             b1.HasIndex("Value")
                                 .IsUnique()
-                                .HasDatabaseName("IX_Employees_CPF");
+                                .HasDatabaseName("ix_employees_cpf");
 
-                            b1.ToTable("Employees");
+                            b1.ToTable("employees");
 
                             b1.WithOwner()
-                                .HasForeignKey("EmployeeAggregateId");
+                                .HasForeignKey("EmployeeAggregateId")
+                                .HasConstraintName("fk_employees_employees_id");
                         });
 
                     b.OwnsOne("Employee.Domain.ValueObjects.Email", "Email", b1 =>
                         {
                             b1.Property<Guid>("EmployeeAggregateId")
-                                .HasColumnType("uniqueidentifier");
+                                .HasColumnType("uuid")
+                                .HasColumnName("id");
 
                             b1.Property<string>("Value")
                                 .IsRequired()
                                 .HasMaxLength(255)
-                                .HasColumnType("nvarchar(255)")
-                                .HasColumnName("Email");
+                                .HasColumnType("character varying(255)")
+                                .HasColumnName("email");
 
                             b1.HasKey("EmployeeAggregateId");
 
                             b1.HasIndex("Value")
                                 .IsUnique()
-                                .HasDatabaseName("IX_Employees_Email");
+                                .HasDatabaseName("ix_employees_email");
 
-                            b1.ToTable("Employees");
+                            b1.ToTable("employees");
 
                             b1.WithOwner()
-                                .HasForeignKey("EmployeeAggregateId");
+                                .HasForeignKey("EmployeeAggregateId")
+                                .HasConstraintName("fk_employees_employees_id");
                         });
 
                     b.OwnsOne("Employee.Domain.ValueObjects.PhoneNumber", "PhoneNumber", b1 =>
                         {
                             b1.Property<Guid>("EmployeeAggregateId")
-                                .HasColumnType("uniqueidentifier");
+                                .HasColumnType("uuid")
+                                .HasColumnName("id");
 
                             b1.Property<string>("Value")
                                 .IsRequired()
                                 .HasMaxLength(11)
-                                .HasColumnType("nvarchar(11)")
-                                .HasColumnName("PhoneNumber");
+                                .HasColumnType("character varying(11)")
+                                .HasColumnName("phone_number");
 
                             b1.HasKey("EmployeeAggregateId");
 
-                            b1.ToTable("Employees");
+                            b1.ToTable("employees");
 
                             b1.WithOwner()
-                                .HasForeignKey("EmployeeAggregateId");
+                                .HasForeignKey("EmployeeAggregateId")
+                                .HasConstraintName("fk_employees_employees_id");
                         });
 
                     b.Navigation("Address")

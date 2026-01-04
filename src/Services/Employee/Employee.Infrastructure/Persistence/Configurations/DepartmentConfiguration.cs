@@ -9,7 +9,7 @@ public class DepartmentConfiguration : IEntityTypeConfiguration<Department>
     public void Configure(EntityTypeBuilder<Department> builder)
     {
         // Table name
-        builder.ToTable("Departments");
+        builder.ToTable("departments");
 
         // Primary key
         builder.HasKey(d => d.Id);
