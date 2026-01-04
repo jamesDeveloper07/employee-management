@@ -1,7 +1,7 @@
 # 🔖 Checkpoint - Implementação Employee Management
 
-**Data:** 2026-01-03
-**Status:** Em Progresso - Fase 5 COMPLETA (API Layer - Controllers + Swagger + DI)
+**Data:** 2026-01-04
+**Status:** Em Progresso - Fase 6 COMPLETA (PostgreSQL + Snake_case + Seed Data)
 
 ---
 
@@ -312,25 +312,143 @@ src/Services/Employee/Employee.API/
 
 ---
 
+### 8. ✅ FASE 6: PostgreSQL + Database Setup + Seed Data (100%)
+
+#### Migrações Realizadas
+**SQL Server → PostgreSQL:**
+- ✅ Removido `Microsoft.EntityFrameworkCore.SqlServer`
+- ✅ Instalado `Npgsql.EntityFrameworkCore.PostgreSQL 10.0.0`
+- ✅ Instalado `EFCore.NamingConventions 10.0.0-rc.2` (snake_case)
+- ✅ Atualizado `Program.cs` (UseSqlServer → UseNpgsql)
+- ✅ Atualizado `DesignTimeDbContextFactory.cs`
+- ✅ Connection strings atualizadas para PostgreSQL
+
+#### Naming Convention (Snake_case)
+**Configurações aplicadas:**
+- ✅ `.UseSnakeCaseNamingConvention()` habilitado
+- ✅ Tabelas em snake_case: `departments`, `employees`
+- ✅ Colunas em snake_case: `id`, `first_name`, `cpf`, `email`, `phone_number`, etc.
+- ✅ Índices em snake_case: `pk_departments`, `ix_employees_cpf`, etc.
+- ✅ Value Objects mapeados: `cpf`, `email`, `phone_number`, `address_*`
+
+#### Entity Base - Correção Crítica
+**Problema corrigido:**
+- ✅ Entity base agora gera GUIDs automáticos no construtor
+- ✅ Evita conflitos de tracking do EF Core
+- ✅ Todas as entidades agora têm IDs únicos
+
+```csharp
+protected Entity()
+{
+    Id = Guid.NewGuid(); // ✅ Geração automática
+}
+```
+
+#### Database Schema (PostgreSQL)
+**Banco:** `employee_management_dev`
+
+**Tabelas criadas:**
+```sql
+departments (snake_case)
+├── id (uuid, PK)
+├── name (varchar(100), UNIQUE)
+├── description (varchar(500))
+├── is_active (boolean, DEFAULT true)
+├── created_at (timestamptz)
+└── updated_at (timestamptz, nullable)
+
+employees (snake_case)
+├── id (uuid, PK)
+├── first_name (varchar(100))
+├── last_name (varchar(100))
+├── cpf (varchar(11), UNIQUE)
+├── email (varchar(255), UNIQUE)
+├── phone_number (varchar(11))
+├── address_street (varchar(200))
+├── address_number (varchar(20))
+├── address_complement (varchar(100), nullable)
+├── address_neighborhood (varchar(100))
+├── address_city (varchar(100))
+├── address_state (varchar(2))
+├── address_zip_code (varchar(8))
+├── address_country (text)
+├── birth_date (timestamptz)
+├── hire_date (timestamptz)
+├── salary (numeric(18,2))
+├── position (varchar(100))
+├── department_id (uuid, FK → departments)
+├── is_active (boolean, DEFAULT true)
+├── created_at (timestamptz)
+└── updated_at (timestamptz, nullable)
+```
+
+#### Seed Data Implementation
+**Arquivo:** `Employee.Infrastructure/Persistence/DataSeeder.cs`
+
+**Departamentos criados (8):**
+1. ✅ Tecnologia da Informação
+2. ✅ Recursos Humanos
+3. ✅ Financeiro
+4. ✅ Comercial
+5. ✅ Marketing
+6. ✅ Operações
+7. ✅ Jurídico
+8. ✅ Qualidade
+
+**Funcionalidades:**
+- ✅ Verifica se departamentos já existem antes de inserir
+- ✅ Execução automática no startup da API
+- ✅ Logging de todas as operações
+- ✅ Tratamento de erros
+
+#### Migrations Aplicadas
+```bash
+✅ Migration: 20260104173140_InitialCreate
+✅ Database created: employee_management_dev
+✅ Schema created with snake_case naming
+✅ Seed data inserted successfully
+```
+
+#### API Testada
+**URL:** http://localhost:5107
+
+**Endpoints testados:**
+- ✅ `GET /api/Departments` → 8 departamentos retornados
+- ✅ `GET /api/Departments/active` → 8 departamentos ativos
+- ✅ Swagger UI acessível
+- ✅ Health Check funcionando
+
+**Exemplo de resposta:**
+```json
+[
+  {
+    "id": "c879ecd0-600e-4ec7-987b-feec6f5a5a7c",
+    "name": "Comercial",
+    "description": "Departamento responsável pelas vendas...",
+    "isActive": true
+  }
+]
+```
+
+---
+
 ## 🎯 PRÓXIMO PASSO (Retomar aqui)
 
-### **FASE 6: Testes Unitários + Aplicar Migrations**
+### **FASE 7: Testes Unitários (Domain + Application)**
 
 **O que será feito:**
-1. Escrever testes unitários para Domain, Application e API
-2. Aplicar migrations ao banco de dados
-3. Testar API via Swagger
-4. Seed initial data (departamentos)
+1. Criar testes unitários para Value Objects
+2. Criar testes unitários para Domain Entities
+3. Criar testes unitários para Handlers
+4. Criar testes unitários para Validators
+5. Executar todos os testes e garantir cobertura
 
 **Primeiro comando a executar:**
 ```bash
 cd "/Users/james/SNR Test/Project/employee-management"
 
-# Aplicar migrations
-dotnet ef database update --project src/Services/Employee/Employee.Infrastructure --startup-project src/Services/Employee/Employee.API
-
-# Executar a API
-dotnet run --project src/Services/Employee/Employee.API
+# Executar testes
+dotnet test
 ```
 
 ---
@@ -383,15 +501,23 @@ dotnet run --project src/Services/Employee/Employee.API
    ├─ Localization                             ✅ 100%
    └─ appsettings (2 arquivos)                 ✅ 100%
 
-🔄 Fase 6: Testes + Database Setup             [░░░░░░░░░░] 0%  ← PRÓXIMO
-   ├─ Testes Unitários                         ⏳ 0%
-   ├─ Aplicar Migrations                       ⏳ 0%
-   └─ Testar API via Swagger                   ⏳ 0%
+✅ Fase 6: PostgreSQL + Database Setup         [██████████] 100%
+   ├─ Migração SQL Server → PostgreSQL         ✅ 100%
+   ├─ Snake_case Naming Convention             ✅ 100%
+   ├─ Entity Base - GUID auto-generation       ✅ 100%
+   ├─ Migrations aplicadas                     ✅ 100%
+   ├─ Seed Data (8 departamentos)              ✅ 100%
+   └─ API testada via Swagger                  ✅ 100%
 
-⏳ Fase 7-18: Restantes                        [░░░░░░░░░░] 0%
+🔄 Fase 7: Testes Unitários                    [░░░░░░░░░░] 0%  ← PRÓXIMO
+   ├─ Testes Domain                            ⏳ 0%
+   ├─ Testes Application                       ⏳ 0%
+   └─ Executar testes                          ⏳ 0%
+
+⏳ Fase 8-18: Restantes                        [░░░░░░░░░░] 0%
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Progresso Total: 5/18 fases (28%) + MultiLanguage
+Progresso Total: 6/18 fases (33%) + MultiLanguage
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
