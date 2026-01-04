@@ -38,16 +38,33 @@ public class EmployeeDbContext : DbContext, IUnitOfWork
 
     public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)
     {
-        // Dispatch domain events before saving
-        var domainEvents = GetDomainEvents();
+        try
+        {
+            // Dispatch domain events before saving
+            var domainEvents = GetDomainEvents();
 
-        // Save changes
-        var result = await base.SaveChangesAsync(cancellationToken);
+            // Debug: Check if there are changes to save
+            var changesCount = ChangeTracker.Entries().Count(e => e.State == EntityState.Added ||
+                                                                   e.State == EntityState.Modified ||
+                                                                   e.State == EntityState.Deleted);
 
-        // Domain events will be dispatched via MediatR after saving
-        // This will be implemented in the API layer or via a domain event dispatcher
+            Console.WriteLine($"[SaveEntitiesAsync] Changes to save: {changesCount}");
 
-        return result > 0;
+            // Save changes
+            var result = await base.SaveChangesAsync(cancellationToken);
+
+            Console.WriteLine($"[SaveEntitiesAsync] Saved {result} entities");
+
+            // Domain events will be dispatched via MediatR after saving
+            // This will be implemented in the API layer or via a domain event dispatcher
+
+            return result > 0;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"[SaveEntitiesAsync] ERROR: {ex.Message}");
+            throw;
+        }
     }
 
     private List<IDomainEvent> GetDomainEvents()

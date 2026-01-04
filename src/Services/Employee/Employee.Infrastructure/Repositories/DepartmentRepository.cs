@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Common.Domain;
 using Employee.Domain.Entities;
 using Employee.Domain.Repositories;
 using Employee.Infrastructure.Persistence;
@@ -8,6 +9,8 @@ namespace Employee.Infrastructure.Repositories;
 public class DepartmentRepository : IDepartmentRepository
 {
     private readonly EmployeeDbContext _context;
+
+    public IUnitOfWork UnitOfWork => _context;
 
     public DepartmentRepository(EmployeeDbContext context)
     {

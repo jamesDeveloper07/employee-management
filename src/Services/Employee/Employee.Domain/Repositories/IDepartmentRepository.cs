@@ -1,9 +1,12 @@
+using Common.Domain;
 using Employee.Domain.Entities;
 
 namespace Employee.Domain.Repositories;
 
 public interface IDepartmentRepository
 {
+    IUnitOfWork UnitOfWork { get; }
+
     Task<Department?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
     Task<Department?> GetByNameAsync(string name, CancellationToken cancellationToken = default);
     Task<IEnumerable<Department>> GetAllAsync(CancellationToken cancellationToken = default);

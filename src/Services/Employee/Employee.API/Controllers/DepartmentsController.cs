@@ -91,7 +91,7 @@ public class DepartmentsController : ControllerBase
         {
             var department = Department.Create(request.Name, request.Description);
             _departmentRepository.Add(department);
-            await _departmentRepository.GetByIdAsync(department.Id); // Trigger save via UnitOfWork in real scenario
+            await _departmentRepository.UnitOfWork.SaveEntitiesAsync();
 
             var departmentDto = _mapper.Map<DepartmentDto>(department);
             return CreatedAtAction(nameof(GetById), new { id = department.Id }, departmentDto);
@@ -130,6 +130,7 @@ public class DepartmentsController : ControllerBase
 
             department.Update(request.Name, request.Description);
             _departmentRepository.Update(department);
+            await _departmentRepository.UnitOfWork.SaveEntitiesAsync();
 
             var departmentDto = _mapper.Map<DepartmentDto>(department);
             return Ok(departmentDto);
@@ -166,6 +167,7 @@ public class DepartmentsController : ControllerBase
             }
 
             _departmentRepository.Delete(department);
+            await _departmentRepository.UnitOfWork.SaveEntitiesAsync();
             return NoContent();
         }
         catch (Exception ex)
